@@ -6,10 +6,10 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
-input {
+.entrance-input {
     height: 45px;
     width: 100%;
-    color: #3B5983;
+    color: #333;
     font-size: 14px;
     line-height: 16px;
     border: 2px solid #E9F2FF;
@@ -20,17 +20,14 @@ input:focus {
     outline: none;
     border: 2px solid #C1D9FD;
 }
-input:valid {
-    border-color: greenyellow;
-}
 input:invalid {
-    border-color: orange;
+    border-color: red;
 }
 input:not(:focus):invalid {
     border-color: #C1D9FD;
 }
 main {
-    background: #F1F5FE;
+    background: #B0E8E8;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -70,8 +67,8 @@ main {
         height: 1000px;
     }
     100% {
-        width: 534px;
-        height: 534px;
+        width: 474px;
+        height: 474px;
     }
 }
 .register-form-container {
@@ -81,12 +78,9 @@ main {
     max-width: 415px;
     width: 100%;
     background: #FFFFFF;
-    box-shadow: 0px 6px 50px rgba(217, 229, 255, 0.7);
+    box-shadow: 0px 6px 50px #C2FFFF;
     border-radius: 20px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 38px;
-    padding-bottom: 38px;
+    padding: 38px 30px;
     animation-name: fadeForm;
     animation-duration: .7s;
     animation-timing-function: ease-in-out;
@@ -112,11 +106,13 @@ main {
     }
 }
 .form-title {
-    color: #30507D;
+    color: #333333;
     font-weight: 500;
     font-size: 20px;
     line-height: 23px;
     margin-bottom: 38px;
+    text-align: center;
+    text-transform: uppercase;
 }
 .form-field {
     margin-bottom: 13px;
@@ -127,7 +123,7 @@ main {
     font-size: 14px;
     display:block;
     height: 45px;
-    background: #247FFF;
+    background: #00B8B8;
     border-radius: 5px;
     color:#fff;
     text-transform: uppercase;
@@ -137,14 +133,14 @@ main {
     border: none;
 }
 .button:hover {
-    background-color: #0D6CF2;
+    background-color: teal;
 }
 a.button {
     text-decoration: none;
 }
 .button-google {
-    color:#C6CFDC;
-    background: #F2F6FF;
+    color: white;
+    background: #CDCCCB;
 }
 .button-google:hover {
     background: #E2E6F0;
@@ -152,10 +148,127 @@ a.button {
 }
 .divider {
     font-weight: 500;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px;
-    color: #405D87;
+    color: #333333;
     text-align: center;
-    padding-top: 25px;
+    text-transform: uppercase;
+    padding-top: 15px;
     padding-bottom: 25px;
+    background: transparent;
+}
+
+.container {
+    margin: 50px auto;
+}
+
+.brand-logo {
+    margin-left: 50px;
+}
+
+.right {
+    padding-right: 50px;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    cursor: pointer;
+    padding: 1rem;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.newTodo {
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.newTodo label {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.todo {
+    margin-bottom: 1rem;
+}
+
+.todo span.completed {
+    text-decoration: line-through;
+}
+
+.todo label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background: #f3f3f3;
+    padding: 1rem;
+}
+
+.todo i {
+    z-index: 2;
+}
+
+.topSort {
+    padding-left: 4rem;
+    padding-bottom: 1rem;
+}
+
+.status {
+    width: 45%;
+    float:left
+}
+
+.taskTitle {
+    width: 20%;
+    float:left
+}
+
+.taskFile {
+    width: 20%;
+    float:left;
+}
+
+.save {
+    width: 10%;
+    float:right;
+    align-items: end
+}
+
+.example-1 input[type=file] {
+    outline:0;
+    opacity:0;
+    pointer-events:none;
+    user-select:none
+}
+.example-1 .label {
+    width:120px;
+    border:2px dashed grey;
+    border-radius:5px;
+    display:block;
+    padding-top:1.2em;
+    transition:border 300ms ease;
+    cursor:pointer;
+    text-align:center
+}
+
+.example-1 .label i {
+    display:block;
+    font-size:42px;
+    padding-bottom:16px
+}
+
+.example-1 .label i,.example-1 .label .title {
+    color:grey;
+    transition:200ms color
+}
+.example-1 .label:hover {
+    border:2px solid #000
+}
+.example-1 .label:hover i,.example-1 .label:hover .title {
+    color:#000
 }

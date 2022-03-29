@@ -1,9 +1,9 @@
-const User = require('./models/User')
-const Role = require('./models/Role')
+const User = require('../models/User')
+const Role = require('../models/Role')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const {validationResult} = require('express-validator')
-const {secret} = require('./config')
+const {secret} = require('../config')
 
 const generateAccessToken = (id, roles) => {
     const payload = { id, roles }
@@ -41,10 +41,12 @@ class authController {
 
     async login(req, res) {
         try {
+            console.log(req.body)
+
             const {username, password} = req.body
             const user = await User.findOne({username})
             if(!user) {
-                return res.status(400).json({message: `Couldn't find user ${user}`})
+                return res.status(400).json({message: `Couldn't find user ${username}`})
             }
 
             const validPassword = bcrypt.compareSync(password, user.password)
