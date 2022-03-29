@@ -41,12 +41,17 @@ function customHttp() {
 
             const response = await fetch('/todo/add', {
                 method: 'POST',
+                headers: {'Authorization': 'Bearer ' + token},
                 body: data
             });
 
+            const result = await response.json();
+
             if (response.ok === true) {
-                const todos = await response.json();
-                cb(null, todos.todo);
+                cb(null, result);
+            }
+            else {
+                cb(result);
             }
         },
         async put(id, cb) {
@@ -57,15 +62,20 @@ function customHttp() {
                     id: id
                 })
             });
+            const result = await response.json();
+
             if (response.ok === true) {
-                const todos = await response.json();
-                cb(null, todos.todo);
+                cb(null, result);
+            }
+            else {
+                cb(result);
             }
         }
     };
 }
 
 const http = customHttp();
+let token = '';
 
 let form = document.forms['entrance_form'];
 let todoTitleInput = form.elements['title'];
@@ -100,7 +110,7 @@ function onGetResponse(err, res) {
     removePreloader();
 
     if (err) {
-        showAlert(err, 'error-msg');
+        showAlert(err.message, 'error-msg');
         return;
     }
 
@@ -110,7 +120,13 @@ function onGetResponse(err, res) {
     }
 
     if(res.token) {
+        token = res.token;
         renderNavigation();
+        loadTodos();
+        return;
+    }
+
+    if(res.todo) {
         loadTodos();
         return;
     }
@@ -170,7 +186,7 @@ function renderNavigation() {
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li class="active"><a id="output">All</a></li>
                     <li><a id="input">New</a></li> 
-                    <li><a href="/" id="log_out">Log out</a></li>                  
+                    <li><a href="/" id="log_out">Log Out</a></li>                  
                 </ul>
             </div>
         </nav>`;
@@ -190,7 +206,7 @@ function renderInputForm() {
     }
 
     document.querySelector(".teal").insertAdjacentHTML(
-        "afterend",
+        'afterend',
         `
                 <form class="newTodo" enctype="multipart/form-data" name="newTodo">
         <div class="input-field">
